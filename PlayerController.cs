@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour,IDamager
     public InterAdb InterAdb;
     public GameObject vipStatus;
     public GameObject vipStatusDone;
+    public GoogleMobileAdsDemoScript bannerView;
     public int tryCount;
     
     public float damage = 1f;
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour,IDamager
 
      void Start()
     {
-        MobileAds.Initialize(initStatus => { });
+        //MobileAds.Initialize(initStatus => { });
         PurchaseManager.OnPurchaseNonConsumable += purchaningNonConsumable;
             tryCount = PlayerPrefs.GetInt("tryCount");
     }
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour,IDamager
         {
             vipStatus.SetActive(false);
             vipStatusDone.SetActive(true);
+            bannerView.HideBanner();
             Debug.Log("Purchase item : " + args.purchasedProduct.definition.id);
             Money(-(float) args.purchasedProduct.metadata.localizedPrice*1000f);
         }

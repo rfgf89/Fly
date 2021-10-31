@@ -28,7 +28,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     /// </summary>
     public static event OnFailedPurchase PurchaseFailed;
  
-    private void Awake()
+    private void Start()
     {
         InitializePurchasing();
     }

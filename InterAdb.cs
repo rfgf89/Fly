@@ -21,6 +21,6 @@ public class InterAdb : MonoBehaviour
             interstitialAd.Show();
     }
     
-    
+
     
 }
