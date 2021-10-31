@@ -40,9 +40,13 @@ public class PlayerController : MonoBehaviour,IDamager
 
     private void purchaningNonConsumable(PurchaseEventArgs args)
     {
-        vipStatus.SetActive(false);
-        vipStatusDone.SetActive(true);
-        Debug.Log("Purchase item : " + args.purchasedProduct.definition.id);
+        if (money > (float)args.purchasedProduct.metadata.localizedPrice*1000f && vipStatus.activeInHierarchy)
+        {
+            vipStatus.SetActive(false);
+            vipStatusDone.SetActive(true);
+            Debug.Log("Purchase item : " + args.purchasedProduct.definition.id);
+            Money(-(float) args.purchasedProduct.metadata.localizedPrice*1000f);
+        }
     }
     
     void Update() {
@@ -68,10 +72,8 @@ public class PlayerController : MonoBehaviour,IDamager
 
     public void AddMoney(float _money)
     {
-        money += _money;
+        Money(_money);
         Debug.Log("Stonks!!! +"+_money+"$");
-        moneyLabel.GetComponent<TextMeshProUGUI>().text = "Cash :"+money.ToString() + "$";
-
         tryCount++;
         PlayerPrefs.SetInt("tryCount", tryCount);
         if (vipStatus.activeSelf)
@@ -79,6 +81,12 @@ public class PlayerController : MonoBehaviour,IDamager
                 InterAdb.ShowAdBanner();
             
 
+    }
+    
+    public void Money(float _money)
+    {
+        money += _money;
+        moneyLabel.GetComponent<TextMeshProUGUI>().text = "Cash :"+money.ToString() + "$";
     }
     
 }
