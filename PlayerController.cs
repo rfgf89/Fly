@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.Purchasing;
 using UnityEngine;
 using UnityEngine.UI;
-
+using GoogleMobileAds.Api;
 
 public interface IDamager : IRecipientMoney
 {
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour,IDamager
 
      void Start()
     {
+        MobileAds.Initialize(initStatus => { });
         PurchaseManager.OnPurchaseNonConsumable += purchaningNonConsumable;
             tryCount = PlayerPrefs.GetInt("tryCount");
     }

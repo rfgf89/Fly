@@ -8,6 +8,6 @@ public class AdbInit : MonoBehaviour
 {
     void Awake()
     {
-        MobileAds.Initialize(initStatus => { });
+
     }
 }

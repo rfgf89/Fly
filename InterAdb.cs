@@ -12,11 +12,15 @@ public class InterAdb : MonoBehaviour
         interstitialAd = new InterstitialAd(interstitialUnitId);
         AdRequest adRequest = new AdRequest.Builder().Build();
         interstitialAd.LoadAd(adRequest);
+        
     }
 
     public void ShowAdBanner()
     {
-        if(interstitialAd.IsLoaded())
+       // if(interstitialAd.IsLoaded())
             interstitialAd.Show();
     }
+    
+    
+    
 }
